@@ -4,10 +4,11 @@ const inquirer = require('inquirer');
 
 // This class is a baseline manager class for the rest of the employees
 class Manager {
-    constructor (name, id, email) {
+    constructor (name, id, email, officeNum) {
         this.name = name;
         this.id = id;
         this.email = email;
+        this.officeNum = officeNum;
     }
 }
 
@@ -28,4 +29,71 @@ class Intern extends Manager {
     }
 }
 
-   
+
+// This is the set of questions for the manager.
+// But also for the rest of the employees
+const infoManager = () => {
+    return Promise.resolve ([                      // Or maybe try this "inquirer.prompt([])"
+        {
+            type: "input",
+            name: "name",
+            message: "What is the manager's name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is the manager's ID?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is the manager's email?"
+        },
+        {
+            type: "input",
+            name: "officeNumber",
+            message: "What is the manager's office number?"
+        },
+    ])
+}
+
+
+// This is the set of questions for the engineer only
+// Which get the first set of questions from the manager
+const infoEngineer = () => {
+    return Promise.resolve ([
+        {
+            type: "input",
+            name: "github",
+            message: "What is the engineer's github?"
+        },
+    ])
+}
+
+
+// This is the set of questions for the intern only
+// Which get the first set of questions from the manager
+const infoIntern = () => {
+    return Promise.resolve ([                           // Or maybe try this "inquirer.prompt([])"
+        {
+            type: "input",
+            name: "school",
+            message: "What is the intern's school?"
+        },
+    ])
+}
+
+
+
+// This function is asking if another employee is to be added to the team
+const addAnotherEmp = () => {
+    return {
+        
+        type: "list",
+        name: "addTeamMember",
+        message: "What type of team member would you like to add?",
+        choices: ["Manager", "Engineer", "Intern"]
+        
+    }
+}
+
