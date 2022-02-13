@@ -2,93 +2,30 @@ const fs = require ('fs');
 const inquirer = require('inquirer');
 
 
-
-
-const generateReadme = ({employeeData}) =>
-
-  
-`
-
-`;
-
-
-
-
-inquirer
-  .prompt([
-    {
-      type: 'input',
-      name: "employeeData",
-      message: "What is the team manager's name",
-    },
-    // {
-    //     type: 'input',
-    //     name: "engineerName",
-    //     message: "What is the engineer name",
-    // },
-    // {
-    //     type: 'input',
-    //     name: "internName",
-    //     message: "What is the intern name",
-    // },
-
-    {
-        type: "input",
-        name: "id",
-        message: "What is the manager's ID?"
-    },
-    {
-        type: "input",
-        name: "email",
-        message: "What is the manager's email?"
-    },
-    {
-        type: "input",
-        name: "officeNumber",
-        message: "What is the manager's office number?"
-    },
-
-    {
-        type: "list",
-        name: "teamMember",
-        message: "What type of team member would you like to add?",
-        choices: ["Manager", "Engineer", "Intern"]
-    },
-
-    
-    
-   
-   
-    
-])
-
-.then((employeeData) => {
-console.log (employeeData)
-    if(employeeData.teamMember === 'Engineer'){
-        inquirer
-    .prompt([
-        {
-        type: 'input',
-        name: "employeeData",
-        message: "What is the engineer's name",
-        },
-    ])
-}
-else if(employeeData.teamMember === 'Intern'){
-    inquirer
-    .prompt([
-        {
-        type: 'input',
-        name: "employeeData",
-        message: "What is the intern's name",
-        },
-       
-    ])
+// This class is a baseline manager class for the rest of the employees
+class Manager {
+    constructor (name, id, email) {
+        this.name = name;
+        this.id = id;
+        this.email = email;
+    }
 }
 
-const readmeContent = generateReadme(employeeData);
-    // if (teamMember == )
-// fs.writeFile('index.html', readmeContent, (err) =>
-//     err ? console.log(err) : console.log('Successfully created an index.html file!')
-//     );
-});
+
+// This is the engineer class that inherits objects from manager class
+class Engineer extends Manager {
+    constructor (name, id, email, github) {
+        super (name, id, email)               // This calls the parent in order to get those arguments
+        this.github = github;
+    }
+}
+
+// This is the inter class that inherits objects from manager class
+class Intern extends Manager {
+    constructor (name, id, email, school) {
+        super (name, id, email)               // This calls the parent in order to get those arguments
+        this.school = school;
+    }
+}
+
+   
