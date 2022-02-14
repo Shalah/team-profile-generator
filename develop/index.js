@@ -107,7 +107,7 @@ const addAnotherEmp = () => {
             infoIntern ();
         }
         else {
-            console.log("Done");
+            console.log("Done")
         }
     })
 }
