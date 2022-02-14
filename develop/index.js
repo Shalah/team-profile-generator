@@ -120,3 +120,14 @@ const addAnotherEmp = () => {
     })
 }
 
+//Ask for who i want to build?
+
+inquirer.prompt([{
+    input: 'rawlist',
+    name: 'choice',
+    choices: ['Manager', 'Engineer', 'Intern']
+}])
+.then(function(answers){
+    console.log(answers);
+});
+
