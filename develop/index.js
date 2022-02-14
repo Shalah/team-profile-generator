@@ -2,6 +2,7 @@ const fs = require ('fs');
 const inquirer = require('inquirer');
 
 
+
 // This class is a baseline manager class for the rest of the employees
 class Manager {
     constructor (name, id, email, officeNum) {
@@ -92,8 +93,22 @@ const addAnotherEmp = () => {
         type: "list",
         name: "addTeamMember",
         message: "What type of team member would you like to add?",
-        choices: ["Manager", "Engineer", "Intern"]
-        
+        choices: [{name: "Engineer", value: 0}, {name: "Intern", value: 1}, {name: "I do not want to add more team members", value: 2}]
+        //choices: [{ name: "Investigation Discovery", value: 0 }, { name: "CNN", value: 1 }, { name: "Fox News", value: 2}, { name: "TLC", value: 3}]
+
     }
+    .then((answers) => {
+        if (responses.addTeamMember === 0) {
+            console.log("Engineer");
+            infoEngineer ();
+        }
+        else if (responses.addTeamMember === 1) {
+            console.log("Intern");
+            infoIntern ();
+        }
+        else {
+            console.log("Done");
+        }
+    })
 }
 
