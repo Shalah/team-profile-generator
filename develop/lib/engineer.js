@@ -1,4 +1,4 @@
-
+const Employees = require('./employees')
 
 
 // This is the engineer class that inherits objects from Employees class

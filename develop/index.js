@@ -1,42 +1,126 @@
 const fs = require ('fs');
 const inquirer = require('inquirer');
 
+// Importing the classes
+
+const Employees = require('./lib/employees')
+const Manager = require('./lib/manager')
+const Engineer = require('./lib/engineer')
+const Intern = require('./lib/intern')
+
+//global vars
+
+const employeesArr = []
+
+
+
+const empCard = (employee) =>{
+    `
+    <!-- This is the div for the cards -->
+        <div class="card float-center" style="width: 18rem;">
+            <div class="card-body bg-primary text-white">
+              <h5 class="card-title">${employee.name}</h5>
+              <p class="card-text">${employee.role}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">${employee.id}</li>
+              <li class="list-group-item">${employee.email}</li>
+              <li class="list-group-item">${employee.officeNum}</li>
+            </ul>
+        </div>
+    `
+
+}
+
+// for (let i= 0; i <= employeesArr.length; i++){  // this function is to be added at the end. Else!!
+//     empCard(employeesArr[i])
+// }
+
+
+//html file to be used
+
+const generateHTML = [
+    `
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+</head>
+<body>
+    
+    <!-- This is the header -->
+    <div class="jumbotron jumbotron-fluid bg-danger text-white">
+        <div class="container">
+          <h1 class="display-4 d-flex justify-content-center">My Team</h1>
+          <p class="lead"></p>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    ${empCard} // check this
+
+    </body>
+    </html>
+    `
+]
+
+
+
+
+
+//global questions
+
+const EmpQuestions = [
+    {
+        type: "input",
+        name: "name",
+        message: "What is the employee's name?"
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "What is the employee's ID?"
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What is the employee's email?"
+    }
+]
 
 // This is the set of questions for the manager.
 // But also for the rest of the employees
 const infoManager = () => {
     return inquirer.prompt ([                      // Or maybe try this "inquirer.prompt([])"
-        {
+       
+        ...EmpQuestions, {
             type: "input",
-            name: "name",
-            message: "What is the manager's name?"
-        },
-        {
-            type: "input",
-            name: "id",
-            message: "What is the manager's ID?"
-        },
-        {
-            type: "input",
-            name: "email",
-            message: "What is the manager's email?"
-        },
-        {
-            type: "input",
-            name: "officeNumber",
-            message: "What is the manager's office number?"
+            name: "officeNum",
+            message: "What is the employee's office number?"
         }
     ])
 
-    /*
-    .then(function(answers){
+    
+    .then(function(answer){
         addAnotherEmp();
-        fs.appendFile('index.html', infoManager, (err) =>
-        err ? console.log(err) : console.log('Successfully created index.html!')
-    );
+        console.log(answer)
+
+        const manager = new Manager (answer.name, answer.id, answer.email, answer.officeNum)
+        console.log(manager)
+        employeesArr.push(manager)
+    //     fs.appendFile('index.html', infoManager, (err) =>
+    //     err ? console.log(err) : console.log('Successfully created index.html!')
+    // );
     })
-    */
+    
 }
+
 
 
 // This is the set of questions for the engineer only
@@ -84,8 +168,8 @@ const addAnotherEmp = () => {
     .then(function(answers){
     if (answers.name === "Manager") {
         console.log("Manager");
-        infoManager();
-        addAnotherEmp();
+        infoManager(); 
+        //addAnotherEmp();
     }
     else if (answers.name === "Engineer") {
         console.log("Engineer");
@@ -97,6 +181,7 @@ const addAnotherEmp = () => {
     }
     else {
         console.log("Done")
+        // add loop function
     }
     
     });

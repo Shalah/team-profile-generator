@@ -1,4 +1,4 @@
-
+const Employees = require('./employees')
 
 
 // This is the inter class that inherits objects from Employees class
