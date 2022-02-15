@@ -11,6 +11,18 @@ class Employees {
         this.email = email;
         
     }
+    getName = () =>{
+        return this.name
+    }
+    getId = () =>{
+        return this.id
+    }
+    getEmail = () =>{
+        return this.email
+    }
+    getRole = () =>{
+        return Employees
+    }
 }
 
 // This is the Manager class that inherits objects from Employees class
@@ -42,7 +54,7 @@ class Intern extends Employees {
 // This is the set of questions for the manager.
 // But also for the rest of the employees
 const infoManager = () => {
-    return Promise.resolve ([                      // Or maybe try this "inquirer.prompt([])"
+    return inquirer.prompt ([                      // Or maybe try this "inquirer.prompt([])"
         {
             type: "input",
             name: "name",
@@ -62,15 +74,24 @@ const infoManager = () => {
             type: "input",
             name: "officeNumber",
             message: "What is the manager's office number?"
-        },
+        }
     ])
+
+    /*
+    .then(function(answers){
+        addAnotherEmp();
+        fs.appendFile('index.html', infoManager, (err) =>
+        err ? console.log(err) : console.log('Successfully created index.html!')
+    );
+    })
+    */
 }
 
 
 // This is the set of questions for the engineer only
 // Which get the first set of questions from the manager
 const infoEngineer = () => {
-    return Promise.resolve ([
+    return inquirer.prompt ([
         {
             type: "input",
             name: "github",
@@ -83,7 +104,7 @@ const infoEngineer = () => {
 // This is the set of questions for the intern only
 // Which get the first set of questions from the manager
 const infoIntern = () => {
-    return Promise.resolve ([                           // Or maybe try this "inquirer.prompt([])"
+    return inquirer.prompt ([                           // Or maybe try this "inquirer.prompt([])"
         {
             type: "input",
             name: "school",
@@ -94,40 +115,42 @@ const infoIntern = () => {
 
 
 
-// This function is asking if another employee is to be added to the team
-const addAnotherEmp = () => {
-    return {
-        
-        type: "list",
-        name: "addTeamMember",
-        message: "What type of team member would you like to add?",
-        choices: [{name: "Engineer", value: 0}, {name: "Intern", value: 1}, {name: "I do not want to add more team members", value: 2}]
-        //choices: [{ name: "Investigation Discovery", value: 0 }, { name: "CNN", value: 1 }, { name: "Fox News", value: 2}, { name: "TLC", value: 3}]
-
-    }
-    .then((answers) => {
-        if (responses.addTeamMember === 0) {
-            console.log("Engineer");
-            infoEngineer ();
-        }
-        else if (responses.addTeamMember === 1) {
-            console.log("Intern");
-            infoIntern ();
-        }
-        else {
-            console.log("Done")
-        }
-    })
-}
 
 //Ask for who i want to build?
+// This function is asking if another employee is to be added to the team
 
-inquirer.prompt([{
-    input: 'rawlist',
-    name: 'choice',
-    choices: ['Manager', 'Engineer', 'Intern']
-}])
-.then(function(answers){
-    console.log(answers);
-});
+const addAnotherEmp = () => {
+    inquirer.prompt([
+    {
+    type: 'list',
+    name: 'name',
+    choices: ['Manager', 'Engineer', 'Intern', 'Quit'],
+    //choices: [{name: "Manager", value: 0}, {name: "Engineer", value: 1}, {name: "Intern", value: 2}, {name: "I do not want to add more team members", value: 3}]
+    
+    }
+    ])
+
+    .then(function(answers){
+    if (answers.name === "Manager") {
+        console.log("Manager");
+        infoManager();
+        addAnotherEmp();
+    }
+    else if (answers.name === "Engineer") {
+        console.log("Engineer");
+        infoEngineer();
+    } 
+    else if (answers.name === "Intern") { 
+        console.log("Intern");
+        infoIntern();
+    }
+    else {
+        console.log("Done")
+    }
+    
+    });
+}
+ 
+addAnotherEmp();
+
 
