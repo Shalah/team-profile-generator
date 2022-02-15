@@ -11,30 +11,34 @@ const Intern = require('./lib/intern')
 //global vars
 
 const employeesArr = []
+console.log("This is ", employeesArr)
+// console.log(employeesArr)
 
+// const empCard = (employee) =>{
+//     `
+//     <!-- This is the div for the cards -->
+//         <div class="card float-center" style="width: 18rem;">
+//             <div class="card-body bg-primary text-white">
+//               <h5 class="card-title">${employee.name}</h5>
+//               <p class="card-text">${employee.role}</p>
+//             </div>
+//             <ul class="list-group list-group-flush">
+//               <li class="list-group-item">${employee.id}</li>
+//               <li class="list-group-item">${employee.email}</li>
+//               <li class="list-group-item">${employee.officeNum}</li>
+//             </ul>
+//         </div>
+//     `
 
+// }
 
-const empCard = (employee) =>{
-    `
-    <!-- This is the div for the cards -->
-        <div class="card float-center" style="width: 18rem;">
-            <div class="card-body bg-primary text-white">
-              <h5 class="card-title">${employee.name}</h5>
-              <p class="card-text">${employee.role}</p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">${employee.id}</li>
-              <li class="list-group-item">${employee.email}</li>
-              <li class="list-group-item">${employee.officeNum}</li>
-            </ul>
-        </div>
-    `
-
-}
-
-// for (let i= 0; i <= employeesArr.length; i++){  // this function is to be added at the end. Else!!
+// Have the loop in the function so that it does not fire off as soon as the app starts.
+// function empCardLoop (){
+//     for (let i= 0; i <= employeesArr.length; i++){  // this function is to be added at the end. Else!!
 //     empCard(employeesArr[i])
 // }
+// }
+
 
 
 //html file to be used
@@ -63,7 +67,7 @@ const generateHTML = [
     <br>
     <br>
 
-    ${empCard} // check this
+    
 
     </body>
     </html>
@@ -146,7 +150,7 @@ const infoIntern = () => {
             message: "What is the intern's school?"
         },
     ])
-}
+} 
 
 
 
@@ -169,7 +173,7 @@ const addAnotherEmp = () => {
     if (answers.name === "Manager") {
         console.log("Manager");
         infoManager(); 
-        //addAnotherEmp();
+        
     }
     else if (answers.name === "Engineer") {
         console.log("Engineer");
@@ -181,7 +185,8 @@ const addAnotherEmp = () => {
     }
     else {
         console.log("Done")
-        // add loop function
+        // adding loop function to fire off when all done
+        //empCardLoop()
     }
     
     });
