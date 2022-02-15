@@ -2,55 +2,6 @@ const fs = require ('fs');
 const inquirer = require('inquirer');
 
 
-
-// This class is a baseline manager class for the rest of the employees
-class Employees {
-    constructor (name, id, email) {
-        this.name = name;
-        this.id = id;
-        this.email = email;
-        
-    }
-    getName = () =>{
-        return this.name
-    }
-    getId = () =>{
-        return this.id
-    }
-    getEmail = () =>{
-        return this.email
-    }
-    getRole = () =>{
-        return Employees
-    }
-}
-
-// This is the Manager class that inherits objects from Employees class
-class Manager extends Employees {
-    constructor (name, id, email, officeNum) {
-        super (name, id, email) 
-        this.officeNum = officeNum;
-    }
-}
-
-
-// This is the engineer class that inherits objects from Employees class
-class Engineer extends Employees {
-    constructor (name, id, email, github) {
-        super (name, id, email)               // This calls the parent in order to get those arguments
-        this.github = github;
-    }
-}
-
-// This is the inter class that inherits objects from Employees class
-class Intern extends Employees {
-    constructor (name, id, email, school) {
-        super (name, id, email)               // This calls the parent in order to get those arguments
-        this.school = school;
-    }
-}
-
-
 // This is the set of questions for the manager.
 // But also for the rest of the employees
 const infoManager = () => {
