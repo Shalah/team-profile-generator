@@ -26,7 +26,7 @@ describe('engineer', () => {
     describe('create the Github property', () => {
         it("should get the GitHub", () => {
             const employee = new Employee("Messi", 184, "ce@jeme.com", "Ella");
-            expect(employee.officeNum).toBe("Ella")
+            expect(employee.github).toBe("Ella")
         })
     })
     describe('getName', () => {
