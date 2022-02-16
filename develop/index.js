@@ -8,42 +8,45 @@ const Manager = require('./lib/manager')
 const Engineer = require('./lib/engineer')
 const Intern = require('./lib/intern')
 
-//global vars
 
+
+//global variable to get info on employees
 const employeesArr = []
-console.log("This is ", employeesArr)
-// console.log(employeesArr)
+//console.log("This is ", employeesArr)
 
-// const empCard = (employee) =>{
-//     `
-//     <!-- This is the div for the cards -->
-//         <div class="card float-center" style="width: 18rem;">
-//             <div class="card-body bg-primary text-white">
-//               <h5 class="card-title">${employee.name}</h5>
-//               <p class="card-text">${employee.role}</p>
-//             </div>
-//             <ul class="list-group list-group-flush">
-//               <li class="list-group-item">${employee.id}</li>
-//               <li class="list-group-item">${employee.email}</li>
-//               <li class="list-group-item">${employee.officeNum}</li>
-//             </ul>
-//         </div>
-//     `
+const empCard = (employee) =>{
+    console.log('Single Employee', employee);
+    `
+    <!-- This is the div for the cards -->
+        <div class="card float-center" style="width: 18rem;">
+            <div class="card-body bg-primary text-white">
+              <h5 class="card-title">${employee.name}</h5>
+              <p class="card-text">${employee.role}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">${employee.id}</li>
+              <li class="list-group-item">${employee.email}</li>
+              <li class="list-group-item">${employee.officeNum}</li>
+            </ul>
+        </div>
+    `
+    //console.log("THis is my manager name:", employeeArr[0].name)
+    //console.log("THis is my manager email:", employeesArr[0].email)
 
-// }
+}
 
 // Have the loop in the function so that it does not fire off as soon as the app starts.
-// function empCardLoop (){
-//     for (let i= 0; i <= employeesArr.length; i++){  // this function is to be added at the end. Else!!
-//     empCard(employeesArr[i])
-// }
-// }
+function empCardLoop (){
+    for (let i= 0; i <= employeesArr.length; i++){  // this function is to be added at the end. Else!!
+        empCard(employeesArr[i]);
+    }
+}
 
 
 
 //html file to be used
 
-const generateHTML = [
+const generateHTML = (employeesArr) =>
     `
     <!DOCTYPE html>
 <html lang="en">
@@ -67,12 +70,11 @@ const generateHTML = [
     <br>
     <br>
 
-    
+        ${empCard()}        // Add EmpCard in here. Missing curly brakets
 
     </body>
     </html>
-    `
-]
+    `;
 
 
 
@@ -112,15 +114,14 @@ const infoManager = () => {
 
     
     .then(function(answer){
-        addAnotherEmp();
+        
         console.log(answer)
 
         const manager = new Manager (answer.name, answer.id, answer.email, answer.officeNum)
-        console.log(manager)
+        //console.log(manager)
         employeesArr.push(manager)
-    //     fs.appendFile('index.html', infoManager, (err) =>
-    //     err ? console.log(err) : console.log('Successfully created index.html!')
-    // );
+        addAnotherEmp();
+   
     })
     
 }
@@ -186,7 +187,13 @@ const addAnotherEmp = () => {
     else {
         console.log("Done")
         // adding loop function to fire off when all done
-        //empCardLoop()
+        empCardLoop()
+
+        
+        fs.appendFile('index.html', generateHTML(employeesArr), (err) =>
+        err ? console.log(err) : console.log('Successfully created index.html!')
+        );
+        
     }
     
     });
