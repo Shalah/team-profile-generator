@@ -50,7 +50,7 @@ describe('manager', () => {
     describe('getRole', () => {
         it("should return Employee with all the properties", () => {
             const employee = new Employee("Rie", 110, "theone@school.com", "2049000750");;
-            expect(employee.getRole()).toBe("Employee")
+            expect(employee.getRole()).toBe("manager")
         })
     })
 })
