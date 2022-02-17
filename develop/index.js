@@ -15,7 +15,7 @@ const employeesArr = []
 //console.log("This is ", employeesArr)
 
 const empCard = (employee) =>{
-    console.log('Single Employee', employee);
+    console.log('SINGLE EMPLOYEE', employee);
     `
     <!-- This is the div for the cards -->
         <div class="card float-center" style="width: 18rem;">
@@ -26,7 +26,7 @@ const empCard = (employee) =>{
             <ul class="list-group list-group-flush">
               <li class="list-group-item">${employee.id}</li>
               <li class="list-group-item">${employee.email}</li>
-              <li class="list-group-item">${employee.officeNum}</li>
+              <li class="list-group-item">${employee.xtra}</li>
             </ul>
         </div>
     `
@@ -70,7 +70,7 @@ const generateHTML = (employeesArr) =>
     <br>
     <br>
 
-        ${empCard()}        // Add EmpCard in here. Missing curly brakets
+        ${empCard()}        // Add EmpCard in here. 
 
     </body>
     </html>
@@ -105,9 +105,10 @@ const EmpQuestions = [
 const infoManager = () => {
     return inquirer.prompt ([                      // Or maybe try this "inquirer.prompt([])"
        
+        // "...EmpQuestions" ==> This add the global questions to the function
         ...EmpQuestions, {
             type: "input",
-            name: "officeNum",
+            name: "xtra",  // Xtra is for Office Number, Github and School
             message: "What is the employee's office number?"
         }
     ])
@@ -117,7 +118,7 @@ const infoManager = () => {
         
         console.log(answer)
 
-        const manager = new Manager (answer.name, answer.id, answer.email, answer.officeNum)
+        const manager = new Manager (answer.name, answer.id, answer.email, answer.xtra)
         //console.log(manager)
         employeesArr.push(manager)
         addAnotherEmp();
@@ -132,12 +133,23 @@ const infoManager = () => {
 // Which get the first set of questions from the manager
 const infoEngineer = () => {
     return inquirer.prompt ([
-        {
+        ...EmpQuestions, {
             type: "input",
-            name: "github",
-            message: "What is the engineer's github?"
+            name: "xtra",
+            message: "What is the employee's github?"
         },
     ])
+
+    .then(function(answer){
+        
+        //console.log(answer)
+
+        const engineer = new Engineer (answer.name, answer.id, answer.email, answer.xtra)
+        //console.log(manager)
+        employeesArr.push(engineer)
+        addAnotherEmp();
+   
+    })
 }
 
 
@@ -145,12 +157,24 @@ const infoEngineer = () => {
 // Which get the first set of questions from the manager
 const infoIntern = () => {
     return inquirer.prompt ([                           // Or maybe try this "inquirer.prompt([])"
-        {
+        
+        ...EmpQuestions,{
             type: "input",
-            name: "school",
+            name: "xtra",
             message: "What is the intern's school?"
         },
     ])
+
+    .then(function(answer){
+        
+        //console.log(answer)
+
+        const intern = new Intern (answer.name, answer.id, answer.email, answer.xtra)
+        //console.log(manager)
+        employeesArr.push(intern)
+        addAnotherEmp();
+   
+    })
 } 
 
 
