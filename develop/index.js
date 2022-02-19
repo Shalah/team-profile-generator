@@ -14,22 +14,33 @@ const Intern = require('./lib/intern')
 const employeesArr = []
 //console.log("This is ", employeesArr)
 
+let empCardHTMLFct = () => {
+    
+}
+let empCardHTML = "";
+
+
 const empCard = (employee) =>{
     console.log('SINGLE EMPLOYEE', employee);
+    empCardHTML += 
     `
     <!-- This is the div for the cards -->
         <div class="card float-center" style="width: 18rem;">
             <div class="card-body bg-primary text-white">
-              <h5 class="card-title">${employee.name}</h5>
-              <p class="card-text">${employee.role}</p>
+              <h1 class="card-title">${employee.name}</h1>
+              <h4 class="card-text">${employee.getRole()}</h4>
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">${employee.id}</li>
               <li class="list-group-item">${employee.email}</li>
               <li class="list-group-item">${employee.xtra}</li>
-            </ul>
+            </ul> 
         </div>
-    `
+
+        <br>
+        <br>
+    `;
+    console.log("card thml: ", empCardHTML)
     //console.log("THis is my manager name:", employeeArr[0].name)
     //console.log("THis is my manager email:", employeesArr[0].email)
 
@@ -37,8 +48,11 @@ const empCard = (employee) =>{
 
 // Have the loop in the function so that it does not fire off as soon as the app starts.
 function empCardLoop (){
-    for (let i= 0; i <= employeesArr.length; i++){  // this function is to be added at the end. Else!!
+    console.log(employeesArr);
+    for (let i= 0; i < employeesArr.length; i++){  // this function is to be added at the end. Else!!
+        console.log("this is: ", i)
         empCard(employeesArr[i]);
+        
     }
 }
 
@@ -46,7 +60,7 @@ function empCardLoop (){
 
 //html file to be used
 
-const generateHTML = (employeesArr) =>
+const generateHTML = (empCardHTML) =>
     `
     <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +84,11 @@ const generateHTML = (employeesArr) =>
     <br>
     <br>
 
-        ${empCard()}        // Add EmpCard in here. 
+        ${empCardHTML}    
+
+        <br>
+        <br>
+    
 
     </body>
     </html>
@@ -214,7 +232,7 @@ const addAnotherEmp = () => {
         empCardLoop()
 
         
-        fs.appendFile('index.html', generateHTML(employeesArr), (err) =>
+        fs.appendFile('index.html', generateHTML(empCardHTML), (err) =>
         err ? console.log(err) : console.log('Successfully created index.html!')
         );
         
@@ -222,7 +240,7 @@ const addAnotherEmp = () => {
     
     });
 }
- 
+  
 addAnotherEmp();
 
 

@@ -1,56 +1,42 @@
 const employee = require('../develop/lib/employees')
 const engineer = require('../develop/lib/engineer')
 
-describe('engineer', () => {
+describe('intern', () => {
 
+    const engineer = new engineer("Moriba", 60, "me@youhe.com", "Shalsh");
 
-    describe('creating Name', () => {
-        it("should possess the name of the the employee", () => {
-            const employee = new Employee("Rim", 30, "oma@chadn.com", "Shalah");
-            expect(employee.name).toBe("Rim")
+    describe('testing intern properties', () => {
+        it("should possess the name of the the engineer", () => { 
+            expect(engineer.name).toBe("Moriba")
         });
+        it("should possess the Id property", () => {
+            expect(engineer.id).toBe(60)
+        })
+        it("should possess the Email property", () => {
+            expect(engineer.email).toBe("me@youhe.com")
+        })
+        it("should get the Github account", () => {
+            expect(engineer.xtra).toBe("Shalsh")
+        })
 
     });
-    describe('creating ID', () => {
-        it("should possess the Id property", () => {
-            const employee = new Employee("Tupac", 25, "Shakur@forever.com", "Shaldah");
-            expect(employee.id).toBe(25)
-        })
-    })
-    describe('creating Email', () => {
-        it("should possess the Email property", () => {
-            const employee = new Employee("Messi", 184, "ce@jeme.com", "Bono");
-            expect(employee.email).toBe("ce@jeme.com")
-        })
-    })
-    describe('create the Github property', () => {
-        it("should get the GitHub", () => {
-            const employee = new Employee("Messi", 184, "ce@jeme.com", "Ella");
-            expect(employee.github).toBe("Ella")
-        })
-    })
-    describe('getName', () => {
+    
+    describe('testing intern functions', () => {
         it("should get the name using this function", () => {
-            const employee = new Employee("Ilaix", 1, "mochi@on.com", "Proofo");
-            expect(employee.getName()).toBe("Ilaix")
+            expect(engineer.getName()).toBe("Moriba")
         })
-    })
-    describe('getId', () => {
         it("should get the Id using this function", () => {
-            const employee = new Employee("lita", 75, "ki@hir.com", "Mikael");
-            expect(employee.getId()).toBe(75)
+            expect(engineer.getId()).toBe(60)
         })
-    })
-    describe('getEmail', () => {
         it("should get the Email using this function", () => {
-            const employee = new Employee("Matma", 5, "monstersby@ye.com", "James");
-            expect(employee.getEmail()).toBe("monstersby@ye.com")
+            expect(engineer.getEmail()).toBe("me@youhe.com")
+        })
+        it("should get the github with this function", () => {
+            expect(engineer.getxtra()).toBe("Shalsh")
+        })
+        it("should return engineer with all the properties", () => {
+            expect(engineer.getRole()).toBe("engineer")
         })
     })
-    describe('getRole', () => {
-        it("should return Employee with all the properties", () => {
-            const employee = new Employee("Riyam", 10, "the@school.com", "Bond");;
-            expect(employee.getRole()).toBe("engineer")
-        })
-    })
+    
 })

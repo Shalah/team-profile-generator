@@ -4,47 +4,34 @@ const employee = require('../develop/lib/employees')
 describe('employee', () => {
 
 
-    describe('creating Name', () => {
-        it("should possess the name of the the employee", () => {
-            const employee = new Employee("Rim", 27, "ria@chaolin.com");
-            expect(employee.name).toBe("Rim")
+    const manager = new manager("Melo", 5, "omaleo@eta.com");
+
+    describe('testing manager properties', () => {
+        it("should possess the name of the the manager", () => { 
+            expect(manager.name).toBe("Melo")
         });
+        it("should possess the Id property", () => {
+            expect(manager.id).toBe(5)
+        })
+        it("should possess the Email property", () => {
+            expect(manager.email).toBe("omaleo@eta.com")
+        })
 
     });
-    describe('creating ID', () => {
-        it("should possess the Id property", () => {
-            const employee = new Employee("BIG", 25, "thenotoriousbig@forever.com");
-            expect(employee.id).toBe(25)
-        })
-    })
-    describe('creating Email', () => {
-        it("should possess the Email property", () => {
-            const employee = new Employee("Jessica", 1884, "je@jemyme.com");
-            expect(employee.email).toBe("je@jemyme.com")
-        })
-    })
-    describe('getName', () => {
+    
+    
+    describe('testing manager functions', () => {
         it("should get the name using this function", () => {
-            const employee = new Employee("Elle", 4, "mochi@on.com");
-            expect(employee.getName()).toBe("Elle")
+            expect(manager.getName()).toBe("Melo")
         })
-    })
-    describe('getId', () => {
         it("should get the Id using this function", () => {
-            const employee = new Employee("Rim", 27, "loki@thor.com");
-            expect(employee.getId()).toBe(27)
+            expect(manager.getId()).toBe(5)
         })
-    })
-    describe('getEmail', () => {
         it("should get the Email using this function", () => {
-            const employee = new Employee("Rim", 27, "monstersby@kanye.com");
-            expect(employee.getEmail()).toBe("monstersby@kanye.com")
+            expect(manager.getEmail()).toBe("omaleo@eta.com")
         })
-    })
-    describe('getRole', () => {
-        it("should return Employee with all the properties", () => {
-            const employee = new Employee("Rim", 27, "theone@school.com");;
-            expect(employee.getRole()).toBe("Employee")
+        it("should return manager with all the properties", () => {
+            expect(manager.getRole()).toBe("manager")
         })
     })
 })

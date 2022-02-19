@@ -3,13 +3,13 @@ const Employees = require('./employees')
 
 // This is the engineer class that inherits objects from Employees class
 class Engineer extends Employees {
-    constructor (name, id, email, github) {
+    constructor (name, id, email, xtra) {
         super (name, id, email)               // This calls the parent in order to get those arguments
-        this.github = github;
+        this.xtra = xtra;
     }
 
-    getGithub = () =>{
-        return this.github
+    getxtra = () =>{
+        return this.xtra
     }
     getRole = () =>{
         return 'Engineer'
