@@ -1,4 +1,4 @@
-# team-profile-generator
+# Team Profile Generator
 
 ## License
 
@@ -6,13 +6,16 @@
 
 ## Screenshot
 
-![teamProfileGenerator]()
+![teamProfileGenerator](./assets/team-profile-generator.png)
 
 ## Description
 This is a team profile generator. It builds a team for the user with three different employee title: Manager, Engineer and Intern. Each employee also has a set of questions that displays more information on them. The user can add as many members as they want. 
 
+## Installation
+The first step is to download the app. Once downloaded, use the terminal to run `npm install`. This will download everything the application needs in order to run.
+
 ## Usage
-To be able to use the application, the user has to install few things such as inquirer ...
+After running `npm install`, run this second command to launch the app: `node index.js`. Any data you input after this is up to you. 
 
 ## Developer
 - Rim Zoungrana
