@@ -1,3 +1,8 @@
+/* 
+THIS IS NOT TO BE USED. 
+IT WAS CREATED TO TRY DIFFERENT METHODS.
+*/
+
 const fs = require ('fs');
 const inquirer = require('inquirer');
 
