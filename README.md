@@ -5,9 +5,10 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Screenshot
-
 ![teamProfileGenerator](./assets/team-profile-generator.png)
 
+## Demonstration: video
+[Click here](https://drive.google.com/file/d/1pRdWYrirGRJcSXpDrX50HRDErxSdrMT1/view?usp=sharing)
 ## Description
 This is a team profile generator. It builds a team for the user with three different employee title: Manager, Engineer and Intern. Each employee also has a set of questions that displays more information on them. The user can add as many members as they want. 
 
